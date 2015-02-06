@@ -57,7 +57,7 @@ module Associatable
   # Phase IIIb
   def belongs_to(name, option = {})
     options = BelongsToOptions.new(name, option)
-    @assoc_options[name] = options
+    assoc_options[name] = options
     define_method(name) do
       c = options.model_class
       key = options.send(:foreign_key)

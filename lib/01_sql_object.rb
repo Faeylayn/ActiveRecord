@@ -150,5 +150,6 @@ class SQLObject
     end
     # ...
   end
+  
 
 end
