@@ -28,3 +28,46 @@ module Associatable
     # ...
   end
 end
+
+
+class Relation
+
+  def initialize(params, origin)
+    @params = params
+    @origin = origin
+    @set_string = ""
+    where(@params)
+  end
+
+
+  def where(params)
+
+#    set_string = "#{params.keys[0].to_s} = ?"
+    params.keys.each do |x|
+       @set_string += "#{x.to_s} = ? AND "
+     end
+     @set_string = @set_string[0..-6]
+
+     return self
+  end
+
+  def method_missing(method, *args)
+    results = DBConnection.instance.execute(<<-SQL, @params.values)
+    SELECT
+      *
+    FROM
+      #{@origin.table_name}
+    WHERE
+      #{@set_string}
+        SQL
+
+    out = @origin.parse_all(results)
+    out.send(method, *args)
+
+  end
+
+  def inspect
+    method_missing(:inspect)
+  end
+
+end
