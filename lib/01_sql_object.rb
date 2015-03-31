@@ -1,11 +1,10 @@
 require_relative 'db_connection'
 require 'active_support/inflector'
 
-# NB: the attr_accessor we wrote in phase 0 is NOT used in the rest
-# of this project. It was only a warm up.
+
 
 class SQLObject
-#  attr_accessor :attributes
+
 
   def self.columns
     results = DBConnection.instance.execute(<<-SQL)
@@ -28,7 +27,7 @@ class SQLObject
         attributes[action] = argument
       end
     end
-    # ...
+
   end
 
   def self.finalize!
@@ -40,7 +39,7 @@ class SQLObject
 
   def self.table_name
     @table_name ||= self.to_s.downcase + 's'
-    # ...
+
   end
 
   def self.all
@@ -53,7 +52,7 @@ class SQLObject
 
     out = self.parse_all(results)
 
-    # ...
+
   end
 
   def self.parse_all(results)
@@ -90,12 +89,12 @@ class SQLObject
 
   def attributes
     @attributes ||= {}
-    #
+
   end
 
   def attribute_values
     @attributes.values
-    # ...
+
   end
 
   def insert
@@ -116,8 +115,6 @@ class SQLObject
       (#{new_vstring})
     SQL
     self.id = DBConnection.instance.last_insert_row_id
-
-    # ...
   end
 
   def update
@@ -139,7 +136,7 @@ class SQLObject
      WHERE
        id = ?
     SQL
-        # ...
+
   end
 
   def save
@@ -148,8 +145,7 @@ class SQLObject
     else
       self.update
     end
-    # ...
   end
-  
+
 
 end

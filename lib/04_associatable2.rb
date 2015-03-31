@@ -1,9 +1,7 @@
 require_relative '03_associatable'
 
-# Phase IV
-module Associatable
-  # Remember to go back to 04_associatable to write ::assoc_options
 
+module Associatable
   def has_one_through(name, through_name, source_name)
 
 
@@ -23,9 +21,6 @@ module Associatable
       source = s.where({ c_id_s => through.send(key_s) }).first
 
     end
-
-
-    # ...
   end
 end
 
@@ -41,8 +36,6 @@ class Relation
 
 
   def where(params)
-
-#    set_string = "#{params.keys[0].to_s} = ?"
     params.keys.each do |x|
        @set_string += "#{x.to_s} = ? AND "
      end

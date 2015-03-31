@@ -4,7 +4,7 @@ require_relative '04_associatable2'
 
 module Searchable
   def where(params)
-    # ...
+
     return Relation.new(params, self)
 
 
@@ -13,5 +13,5 @@ end
 
 class SQLObject
   extend Searchable
-  # Mixin Searchable here...
+
 end
