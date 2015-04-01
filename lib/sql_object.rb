@@ -118,16 +118,14 @@ class SQLObject
   end
 
   def update
-#
-  p attribute_values
-  p attributes
+
   value = attribute_values
   value.shift
-  p value
+
 
     set_string = attributes.keys[1..-1].join(' = ?, ')
     set_string += ' = ?'
-    p set_string
+
      DBConnection.instance.execute(<<-SQL, *value, self.id)
      UPDATE
        #{self.class.table_name}
