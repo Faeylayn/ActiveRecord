@@ -74,7 +74,6 @@ class SQLObject
   def initialize(params = {})
     params.keys.each do |param|
       param1 = param.to_sym
-
       raise "unknown attribute '#{param1}'" unless self.class.columns.include?(param1)
       self.send("#{param}=", params[param])
     end
