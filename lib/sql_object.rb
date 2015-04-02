@@ -27,7 +27,6 @@ class SQLObject
         attributes[action] = argument
       end
     end
-
   end
 
   def self.finalize!
@@ -39,7 +38,6 @@ class SQLObject
 
   def self.table_name
     @table_name ||= self.to_s.downcase + 's'
-
   end
 
   def self.all
@@ -51,8 +49,6 @@ class SQLObject
     SQL
 
     out = self.parse_all(results)
-
-
   end
 
   def self.parse_all(results)
@@ -63,7 +59,6 @@ class SQLObject
       output << c
     end
     output
-    # ...
   end
 
   def self.find(id)
@@ -74,7 +69,6 @@ class SQLObject
       return thing if thing.attributes[:id] == id
     end
     nil
-    # ...
   end
 
   def initialize(params = {})
@@ -84,17 +78,14 @@ class SQLObject
       raise "unknown attribute '#{param1}'" unless self.class.columns.include?(param1)
       self.send("#{param}=", params[param])
     end
-    # ...
   end
 
   def attributes
     @attributes ||= {}
-
   end
 
   def attribute_values
     @attributes.values
-
   end
 
   def insert
@@ -144,6 +135,4 @@ class SQLObject
       self.update
     end
   end
-
-
 end
